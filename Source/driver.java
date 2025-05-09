@@ -7,25 +7,20 @@ public class driver {
         Scanner scanner = new Scanner(System.in);
 
         Game poker = new Game();
+        System.out.println(poker.getGameDeck());
 
         Random r = new Random();
-        Card c1 = new Card(0, 11);
-        Card c2 = new Card(1, 0);
-        Deck d1 = new Deck();
-        System.out.println(c1);
-        System.out.println(c2);
-        System.out.println(d1);
+        // Card c1 = new Card(0, 11);
+        // Card c2 = new Card(1, 0);
+        // System.out.println(c1.getEnglish());
+        // System.out.println(c2.getEnglish());
         // bringing the addplayer method to driver
-        poker.addPlayer(scanner);
+        poker.askPlayers(scanner);
         // catching player list in box
         Player[] players = poker.getPlayerList();
 
-        //catching # o' players in box
-        int numPlayers = poker.getNumPlayers();
-        // have to increment through each line in the list
-        for (int i = 0; i < numPlayers; i++) {
-            // for each
-            System.out.println("Player: " + players[i].getName() + ", Balance: " + players[i].getBalance());
+        for (Player player : players) {
+            System.out.println("Player: " + player.getName() + ", Balance: " + player.getBalance());
             // line in the list
             // printing name + balance
         }

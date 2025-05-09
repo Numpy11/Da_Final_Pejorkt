@@ -83,8 +83,7 @@ public class Card {
 
     // toString
     public String toString() {
-        String output = "Card: "
-                + this.getEnglish();
+        String output = super.toString() + this.getEnglish();
         return output;
     }
 }

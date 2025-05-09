@@ -5,31 +5,31 @@ public class Player {
     private String name;
     private int balance;
     private Card[] holeCards;
-    private boolean isInGame;
-    private boolean isHuman;
+    private boolean folded;
 
     // Constructors
-    // public Player() {
-    //     holeCards = new Card[2];
-    // }
-
-    // public Player(boolean isHuman) {
-    //     // I need to define who's human and not so that I don't show user NPC
-    //     // holecards & to automate betting
-    //     this.isHuman = isHuman;
-    // }
-
     public Player(String name, int balance){
         this.setName(name);
         this.setBalance(balance);
+        this.setHoleCards(new Card[2]);
+        this.setFolded(false);
     }
 
     // Helpers
+    public void addToBalance(int value) {
+        int balance = this.getBalance();
+        balance += value;
+        this.setBalance(balance);
+    }
+
+    public void reduceFromBalance(int value) {
+        this.addToBalance(-value);
+    }
+
     public Card[] userCards() {
         Card[] hand = getHoleCards();
         return hand;
     }
-
 
     // Getters
     public String getName() {
@@ -44,37 +44,25 @@ public class Player {
         return this.holeCards;
     }
 
-    public boolean getIsInGame() {
-        return this.isInGame;
+    public boolean getFolded() {
+        return this.folded;
     }
-
-    public boolean getIsHuman() {
-        return this.isHuman;
-    }
-
 
     // Setters
     public void setName(String name) {
         this.name = name;
     }
+
     public void setBalance(int balance) {
         this.balance = balance;
-    }
-
-    public void addToBalance(int additionAmount) {
-        this.balance += additionAmount;
-    }
-
-    public void reduceFromBalance(int reduceAmount) {
-        this.balance -= reduceAmount;
     }
 
     public void setHoleCards(Card[] holeCards) {
         this.holeCards = holeCards;
     }
 
-    public void setIsHuman(boolean isHuman) {
-        this.isHuman = isHuman;
+    public void setFolded(boolean folded) {
+        this.folded = folded;
     }
 
     // toString
@@ -84,8 +72,7 @@ public class Player {
             + this.name
             + " has a balance of " + this.balance
             + ". \nHole Cards: " + this.holeCards[0] + " " + this.holeCards[1]
-            + "\n" + "In the game: " + this.isInGame
+            + "\n" + "In the game: " + this.folded
         );
     }
-
 }
