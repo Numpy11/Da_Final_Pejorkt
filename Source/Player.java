@@ -23,7 +23,7 @@ public class Player {
     }
 
     public void reduceFromBalance(int value) {
-        this.addToBalance(-value)
+        this.addToBalance(-value);
     }
 
     public void holdCard(Card card){
@@ -66,11 +66,12 @@ public class Player {
 
     // toString
     public String toString() {
+        Card[] hand = this.getHand().get_raw();
         return (
             super.toString()
             + this.name
             + " has a balance of " + this.balance
-            + ". \nHand: " + this.hand[0] + " " + this.hand[1]
+            + ". \nHand: " + hand
             + "\n" + "In the game: " + this.folded
         );
     }

@@ -79,12 +79,12 @@ public class Game {
         return array.get_raw();
     }
 
-    public dealCard(Player player){
+    public void dealCard(Player player){
         Deck deck = this.getGameDeck();
         Card card = deck.drawCard();
         if (card == null){
-            this.resetDeck()
-            this.deal_cards(player);
+            this.resetDeck();
+            this.dealCard(player);
         } else {
             player.holdCard(card);
         }

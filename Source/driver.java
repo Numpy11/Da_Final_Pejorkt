@@ -15,7 +15,7 @@ public class driver {
         // System.out.println(c1.getEnglish());
         // System.out.println(c2.getEnglish());
         // bringing the addplayer method to driver
-        poker.askPlayers(scanner);
+        poker.initPlayer(scanner);
         // catching player list in box
         Player[] players = poker.getPlayerList();
 
