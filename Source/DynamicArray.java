@@ -110,7 +110,6 @@ public class DynamicArray<T> implements Iterable<T> {
     }
 
     public T pop(int index) throws IndexOutOfBoundsException {
-        System.out.printf("index = %d\n", index);
         T value = this.get(index);
         for (int i=index; i<this.size-1; i++){
             this.values[index] = this.values[index+1];
