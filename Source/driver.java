@@ -7,7 +7,7 @@ public class driver {
         Scanner scanner = new Scanner(System.in);
 
         Game poker = new Game();
-        System.out.println(poker.getGameDeck());
+        // System.out.println(poker.getGameDeck());
 
         Random r = new Random();
         // Card c1 = new Card(0, 11);

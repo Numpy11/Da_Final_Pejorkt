@@ -4,14 +4,14 @@ public class Player {
     // Data Attributes
     private String name;
     private int balance;
-    private Card[] holeCards;
+    private DynamicArray<Card> hand;
     private boolean folded;
 
     // Constructors
     public Player(String name, int balance){
         this.setName(name);
         this.setBalance(balance);
-        this.setHoleCards(new Card[2]);
+        this.setHand(new DynamicArray<>(Card.class));
         this.setFolded(false);
     }
 
@@ -23,12 +23,11 @@ public class Player {
     }
 
     public void reduceFromBalance(int value) {
-        this.addToBalance(-value);
+        this.addToBalance(-value)
     }
 
-    public Card[] userCards() {
-        Card[] hand = getHoleCards();
-        return hand;
+    public void holdCard(Card card){
+        this.getHand().append(card);
     }
 
     // Getters
@@ -40,8 +39,8 @@ public class Player {
         return this.balance;
     }
 
-    public Card[] getHoleCards() {
-        return this.holeCards;
+    public DynamicArray<Card> getHand() {
+        return this.hand;
     }
 
     public boolean getFolded() {
@@ -57,8 +56,8 @@ public class Player {
         this.balance = balance;
     }
 
-    public void setHoleCards(Card[] holeCards) {
-        this.holeCards = holeCards;
+    public void setHand(DynamicArray<Card> hand) {
+        this.hand = hand;
     }
 
     public void setFolded(boolean folded) {
@@ -71,7 +70,7 @@ public class Player {
             super.toString()
             + this.name
             + " has a balance of " + this.balance
-            + ". \nHole Cards: " + this.holeCards[0] + " " + this.holeCards[1]
+            + ". \nHand: " + this.hand[0] + " " + this.hand[1]
             + "\n" + "In the game: " + this.folded
         );
     }

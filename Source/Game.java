@@ -12,12 +12,16 @@ public class Game {
     // Constructors
     public Game() {
         this.setPlayerList(new Player[0]);
-        this.setGameDeck(new Deck());
+        this.resetDeck();
         this.setCommunityCards(new Card[0]);
         this.setWinningPot(0);
     }
 
     // Helpers
+    public void resetDeck(){
+        this.setGameDeck(new Deck());
+    }
+
     public static String input(String prompt, Scanner scanner){
         System.out.println(prompt + ": ");
         return scanner.nextLine();
@@ -75,16 +79,27 @@ public class Game {
         return array.get_raw();
     }
 
-    public Card[] dealerDraw(Player[] playerList, Card[] holeCards, Card getNextCard) {
-        for (int i = 0; i < playerList.length; i++) {
-            // if less than 2 holeCards
-            if (holeCards.length < 2) {
-                // draw another and add it to index i
-                holeCards[i] = getNextCard;
-            }
+    public dealCard(Player player){
+        Deck deck = this.getGameDeck();
+        Card card = deck.drawCard();
+        if (card == null){
+            this.resetDeck()
+            this.deal_cards(player);
+        } else {
+            player.holdCard(card);
         }
-        return holeCards;
     }
+
+    // public Card[] dealerDraw(Player[] playerList, Card[] holeCards) {
+    //     for (int i = 0; i < playerList.length; i++) {
+    //         // if less than 2 holeCards
+    //         if (holeCards.length < 2) {
+    //             // draw another and add it to index i
+    //             holeCards[i] = getNextCard;
+    //         }
+    //     }
+    //     return holeCards;
+    // }
 
     // Getters
     public Player[] getPlayerList() {

@@ -54,14 +54,12 @@ public class Deck {
         this.setCards(this.shuffle_card_array(this.getCards()));
     }
 
-    public Card getNextCard() {
-        Card hand = null;
+    public Card drawCard() {
         try {
-            hand = this.getCards().pop();
+            return this.getCards().pop();
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Empty Deck");
+            return null;
         }
-        return hand;
     }
 
     // Getters
