@@ -26,17 +26,23 @@ public class Deck {
         int numSuits = 4;
         int numVals = 13;
         int tempIndex = 0; // starting count @ 0
-        Card[] temp = new Card[this.getNumDecks() * this.CARDS]; // making a 2d list of cards that is # o' decks * # o' cards
-
-        for (int i = 0; i < this.getNumDecks(); i++) { // incrementing through # o' decks
-            for (int k = 0; k < numSuits; k++) { // incrementing through # o' suits
-                for (int l = 0; l < numVals; l++) { // incrementing through all cards in each suit
-                    temp[tempIndex] = new Card(k, l); // making a new card list *ing numDecks and CARDS
-                    tempIndex++; // then incrementing it to make another deck
+        // making a 2d list of cards that is # o' decks * # o' cards
+        Card[] temp = new Card[this.getNumDecks() * this.CARDS];
+        // incrementing through # o' decks
+        for (int i = 0; i < this.getNumDecks(); i++) {
+            // incrementing through # o' suits
+            for (int k = 0; k < numSuits; k++) {
+                // incrementing through all cards in each suit
+                for (int l = 0; l < numVals; l++) {
+                    // making a new card list *ing numDecks and CARDS
+                    temp[tempIndex] = new Card(k, l);
+                    // then incrementing it to make another deck
+                    tempIndex++;
                 }
             }
         }
-        this.setCards(temp); // setting out list o' deck
+        // setting out list o' deck
+        this.setCards(temp);
     }
 
     public Card getNextCard() {

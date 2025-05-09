@@ -1,8 +1,11 @@
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class driver {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
         Game poker = new Game();
 
         Random r = new Random();
@@ -12,12 +15,17 @@ public class driver {
         System.out.println(c1);
         System.out.println(c2);
         System.out.println(d1);
-        poker.addPlayer(); // bringing the addplayer method to driver
-        Player[] players = poker.getPlayerList(); // catching player list in box
+        // bringing the addplayer method to driver
+        poker.addPlayer(scanner);
+        // catching player list in box
+        Player[] players = poker.getPlayerList();
 
-        int numPlayers = poker.getNumPlayers();; //catching # o' players in box
-        for (int i = 0; i < numPlayers; i++) { // have to increment through each line in the list
-            System.out.println("Player: " + players[i].getName() + ", Balance: " + players[i].getBalance()); // for each
+        //catching # o' players in box
+        int numPlayers = poker.getNumPlayers();
+        // have to increment through each line in the list
+        for (int i = 0; i < numPlayers; i++) {
+            // for each
+            System.out.println("Player: " + players[i].getName() + ", Balance: " + players[i].getBalance());
             // line in the list
             // printing name + balance
         }

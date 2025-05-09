@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 public class Game {
     // Data Attributes
     private Player[] playerList;
@@ -8,51 +9,73 @@ public class Game {
     private Card[] communityCards;
     private int winningPot;
     private int numPlayers;
-    Scanner keyboard = new Scanner(System.in);
+
+    public final int MAX_PLAYERS = 25;
 
     // Constructors
     public Game() {
-
+       // playerlist = new Player[0];
     }
-//        playerlist = new Player[0];
 
     // Helpers
     public Card[] dealerDraw(Player[] playerList, Card[] holeCards, Card getNextCard) {
         for (int i = 0; i < playerList.length; i++) {
-            if(holeCards.length < 2) { // if less than 2 holeCards
-                holeCards[i] = getNextCard; // draw another and add it to index i
+            // if less than 2 holeCards
+            if(holeCards.length < 2) {
+                // draw another and add it to index i
+                holeCards[i] = getNextCard;
             }
         }
         return holeCards;
     }
 
-    public void init() {
+    public static String input(String prompt, Scanner scanner){
+        System.out.println(prompt + ": ");
+        return scanner.nextLine();
+    }
 
+    public static int input_int(String prompt, Scanner scanner){
+        System.out.println(prompt + ": ");
+        int value = scanner.nextInt();
+        scanner.nextLine();
+        return value;
+    }
+
+    // I want to get user name & balance independently and then pass them into the game class
+    public static String askUserName(Scanner scanner) {
+        return input("Enter the Player's Name", scanner);
+    }
+
+    public static int askUserBalance(Scanner scanner) {
+        return input_int("Enter the Player's Starting Chip Count", scanner);
     }
 
 
-    public void addPlayer() {
-        numPlayers = 0;
+    public void addPlayer(Scanner scanner) {
+        setNumPlayers(0);
         int numAdded = 0;
-        playerList = new Player[25];
+        playerList = new Player[MAX_PLAYERS];
         boolean addMore = true;
-        while(numAdded < 25 && addMore) {
-            System.out.println("Would you like to add a player? y/n: ");
-            String more = keyboard.nextLine(); // saving answer
-            if (more.equalsIgnoreCase("y")) {
-                System.out.println(); // printing answer
-                Player newPlayer = new Player();
-                String name = newPlayer.userName(); // asking for new name and balance
-                int balance = newPlayer.userBalance();
-                newPlayer.setName(name); // saving new name & balance
-                newPlayer.setBalance(balance);
-                playerList[numAdded] = newPlayer; // adding the player to the list
-                numAdded++; // incrementing the list so we dont overwrite the player
-            } else if (more.equalsIgnoreCase("n")) {
-                addMore = false;
+
+        while(numAdded < MAX_PLAYERS && addMore) {
+            addMore = input("Would you like to add a player? y/n", scanner).equalsIgnoreCase("y");
+            if (addMore) {
+                // printing answer
+                System.out.println();
+                // asking for new name and balance
+                // saving new name & balance
+                Player newPlayer = new Player(
+                    askUserName(scanner),
+                    askUserBalance(scanner)
+                );
+
+                // adding the player to the list
+                playerList[numAdded] = newPlayer;
+                // incrementing the list so we dont overwrite the player
+                numAdded++;
             }
         }
-        numPlayers = numAdded;
+        setNumPlayers(numAdded);
     }
 
     // Getters
@@ -61,20 +84,20 @@ public class Game {
         return playerList;
     }
 
-     public Deck getGameDeck() {
+    public Deck getGameDeck() {
         return gameDeck;
-     }
+    }
 
-     public Card[] getCommunityCards() {
+    public Card[] getCommunityCards() {
         return communityCards;
-     }
-     public int getWinningPot() {
+    }
+    public int getWinningPot() {
         return winningPot;
-     }
+    }
 
-     public int getNumPlayers() {
+    public int getNumPlayers() {
         return numPlayers;
-     }
+    }
 
     // Setters
     public void setPlayerList(Player[] playerList ) {
@@ -91,10 +114,5 @@ public class Game {
 
     public void setNumPlayers(int numPlayers) {
         this.numPlayers = numPlayers;
-    }
-
-    // toString
-    public String toString() {
-        return ("");
     }
 }

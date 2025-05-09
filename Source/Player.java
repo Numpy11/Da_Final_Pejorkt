@@ -4,37 +4,30 @@ public class Player {
     // Data Attributes
     private String name;
     private int balance;
-    private Card[] holeCards = new Card[2];
+    private Card[] holeCards;
     private boolean isInGame;
     private boolean isHuman;
-    Scanner keyboard = new Scanner(System.in);
 
     // Constructors
-   public Player() {
+    // public Player() {
+    //     holeCards = new Card[2];
+    // }
 
-   }
+    // public Player(boolean isHuman) {
+    //     // I need to define who's human and not so that I don't show user NPC
+    //     // holecards & to automate betting
+    //     this.isHuman = isHuman;
+    // }
+
+    public Player(String name, int balance){
+        this.setName(name);
+        this.setBalance(balance);
+    }
 
     // Helpers
-
-    public Player(boolean isHuman) { // i need to define whos human and not so that i dont show user NPC holecards & to automate betting
-        this.isHuman = isHuman;
-    }
-
-        // I want to get user name & balance independently and then pass them into the game class
-    public String userName() {
-        System.out.println("Enter the Player's Name: ");
-        String newGuy = keyboard.nextLine();
-        return newGuy;
-    }
-
-    public int userBalance() {
-        System.out.println("Enter the Player's Starting Chip Count: ");
-        int newGuysChips = Integer.parseInt(keyboard.nextLine()); //1 am asked GPT cuz started adding this, n want in for pres.
-        return newGuysChips;
-    }
-
     public Card[] userCards() {
         Card[] hand = getHoleCards();
+        return hand;
     }
 
 
@@ -86,10 +79,13 @@ public class Player {
 
     // toString
     public String toString() {
-        return ("Player: " + this.name
-                + " has a balance of " + this.balance
-                + ". \nHole Cards: " + this.holeCards[0] + " " + this.holeCards[1]
-                + "\n" + "In the game: " + this.isInGame);
+        return (
+            super.toString()
+            + this.name
+            + " has a balance of " + this.balance
+            + ". \nHole Cards: " + this.holeCards[0] + " " + this.holeCards[1]
+            + "\n" + "In the game: " + this.isInGame
+        );
     }
 
 }
